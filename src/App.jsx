@@ -10,10 +10,8 @@ const addTodo = (todo) => {
   }
 
   const updateTodo = (id, todo) => {
-    setTodos((prev) => prev.map((prevTodo) => (prevTodo.id === id ? todo : prevTodo )))
-
-    
-  }
+    setTodos((prev) => prev.map((prevTodo) => (prevTodo.id === id ? { ...prevTodo, ...todo } : prevTodo )))
+}
 
   const deleteTodo = (id) => {
     setTodos((prev) => prev.filter((todo) => todo.id !== id))
@@ -28,7 +26,6 @@ const addTodo = (todo) => {
   }
 useEffect(() => {
     const todos = JSON.parse(localStorage.getItem("todos"))
-
     if (todos && todos.length > 0) {
       setTodos(todos)
     }
@@ -36,8 +33,7 @@ useEffect(() => {
 
 useEffect(()=>{
     localStorage.setItem('todos', JSON.stringify(todos));
-}
-,[todos]);
+},[todos]);
   return (
     <>
     <TodoProvider value={{ todos, addTodo, deleteTodo, updateTodo, toggleComplete }}>
