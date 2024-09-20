@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { useTodo } from '../context/TodoContext';
 function TodoForm() {
-    const[todo, settodo] = useState('');
+    const[todo, setTodo] = useState('');
     const { addTodo } = useTodo();
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -10,10 +10,11 @@ function TodoForm() {
             todo,
             completed: false
         });
-        settodo('');
+        setTodo('');
     }
+    
     const handleChange = (e) => {
-        settodo(e.target.value);
+        setTodo(e.target.value);
     }
   return (
     <div>
